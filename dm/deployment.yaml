@@ -1,0 +1,42 @@
+# Copyright 2014 Google Inc. All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+imports: ["scalable-web-app.jinja", "web-servers.jinja", "storage-bucket.jinja", "http-load-balancer.jinja"]
+
+resources:
+- name: scalable-web-app
+  type: scalable-web-app.jinja
+  properties:
+    database:
+      host: #Replace with your database's host address
+      password: #Replace with your own strong password
+      instance_name: #Replace with your database's instance name    
+    gcs_access_key: disabled
+    gcs_secret: disabled
+    region: us-central1
+    machine_type: n1-standard-1
+    chef_node_url: https://storage.googleapis.com/solutions-public-assets/scalable-resilient-web-apps/dist/node.json
+    chef_cookbook_url: https://storage.googleapis.com/solutions-public-assets/scalable-resilient-web-apps/dist/chef-solo.tar.gz
+    leader:
+      zone: us-central1-b
+    zones:
+      us-central1-b:
+        desired_web_servers: 1
+        min_web_servers: 1
+        max_web_servers: 4
+      us-central1-f:
+        desired_web_servers: 1
+        min_web_servers: 1
+        max_web_servers: 4
+    image: https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/images/ubuntu-1410-utopic-v20150202
