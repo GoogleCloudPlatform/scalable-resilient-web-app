@@ -72,10 +72,10 @@ With `gcloud` installed and the proper APIs configured, you're ready to go.
 
 1. Retrieve the Instance Name and IP address of your database: 
 
-        $ gcloud sql instances describe $DB_NAME| grep ^instance: | cut -d' ' -f2
+        $ gcloud sql instances describe $DB_NAME | grep ^instance: | cut -d' ' -f2
         $ gcloud sql instances describe $DB_NAME | grep ipAddress: | cut -d' ' -f3
 
-1. Open file `dm/deployment.yaml`, replacing the `host` property with the IP address retrieved above, the `password` property with the value you set previously, and the Instance Name of your database retrieved above:
+1. Open file `dm/deployment.yaml`, replacing the `name` and `address` properties with the values retrieved in the previous step, and the `password` property with the value you set previously:
 
         ...
         properties:
