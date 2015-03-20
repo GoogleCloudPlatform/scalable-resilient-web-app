@@ -1,0 +1,72 @@
+# Copyright 2014 Google Inc. All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+{% set HEALTHCHECK = env["name"] + "-healthcheck" %}
+{% set FORWARDING_RULE = env["name"] + "-forwardingrule" %}
+{% set BACKEND_SERVICE = env["name"] + "-backendservice" %}
+{% set URL_MAP = env["name"] + "-urlmap" %}
+{% set TARGET_HTTP_PROXY = env["name"] + "-targethttpproxy" %}
+{% set INSTANCE_GROUP = properties["instance_group"] %}
+
+resources:
+# HTTP Health Check that load balancer will execute against web server instances
+- type: compute.v1.httpHealthCheck
+  name: {{ HEALTHCHECK }}
+  properties:
+    port: 80
+    requestPath: /
+    timeoutSec: 3
+    description: Web server health check
+    checkIntervalSec: 3
+    unhealthyThreshold: 5
+    healthyThreshold: 2
+
+# Backend service
+- type: compute.v1.backendService
+  name: {{ BACKEND_SERVICE }}
+  properties:
+    description: backend service for integration tests
+    healthChecks:
+      - $(ref.{{ HEALTHCHECK }}.selfLink)
+    port: 80
+    portName: http
+    protocol: HTTP
+    timeoutSec: 30
+    backends: 
+      {% for zone in properties["zones"] %}
+      - group: $(ref.{{ INSTANCE_GROUP + "-" + zone }}.group)
+        balancingMode: RATE
+        maxRatePerInstance: 100
+      {% endfor %}
+
+# URL Map
+- type: compute.v1.urlMap
+  name: {{ URL_MAP }}
+  properties:
+    defaultService: $(ref.{{ BACKEND_SERVICE }}.selfLink)
+
+# HTTP Proxy
+- type: compute.v1.targetHttpProxy
+  name: {{ TARGET_HTTP_PROXY }}
+  properties:
+    urlMap: $(ref.{{ URL_MAP }}.selfLink)
+
+# Forwarding Rule
+- type: compute.v1.globalForwardingRule
+  name: {{ FORWARDING_RULE }}
+  properties:
+    IPProtocol: TCP
+    portRange: 80
+    target: $(ref.{{ TARGET_HTTP_PROXY }}.selfLink)
+    region: {{ properties["region"] }}

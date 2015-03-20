@@ -1,0 +1,6 @@
+dist/
+account.json
+.vagrant/
+.make_deployment
+*.swp
+*.zip
