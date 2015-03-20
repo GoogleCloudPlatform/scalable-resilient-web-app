@@ -11,14 +11,14 @@ Deploying this sample will create resources that are billed to your account. It 
 * (1) x D1 Cloud SQL instance
 * (1) x HTTP load balancer forwarding rule
 
-See the Cost section the [solution page](http://cloud.google.com/solutions/scalable-and-resilient-apps) for more details on esimated charges.
+See the Cost section the [solution page](http://cloud.google.com/solutions/scalable-and-resilient-apps) for more details on estimated charges.
 
 To reduce costs, you can modify the Deployment Manager templates to provision smaller machine types, or adjust the Cloud SQL instructions to use a smaller database type.
 
 ## Deployment Requirements
 Before you deploy the sample you'll need to make sure a few things are in order:
 
-1. In the [APIs & Auth section of the Google Developers Console](https://console.developers.google.com/project/_/apiui/api), enable the following APIs (when prompted choose an existing project or create a new project):
+1. In the [APIs & Auth section of the Google Developers Console](https://console.developers.google.com/project/_/apiui/api) create a new project and enable the following APIs:
 
     * Compute Engine API
     * Google Cloud SQL API
@@ -43,7 +43,8 @@ Before you deploy the sample you'll need to make sure a few things are in order:
 ## Deploy the Sample
 With `gcloud` installed and the proper APIs configured, you're ready to go.
 
-1. Clone this repository.
+1. Clone this repository or download and unzip a [copy from Releases](https://github.com/GoogleCloudPlatform/scalable-resilient-web-app/releases).
+
 1. Create a variable to hold a unique name for this deployment:
 
         $ export DEMO_PROJECT=demo-$(date +%s)
