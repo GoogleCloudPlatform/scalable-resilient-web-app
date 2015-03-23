@@ -167,7 +167,6 @@ The majority of the ~15 minute boot time is consumed by Chef downloading, compil
 1. Use `gcloud` to retrieve the URI of the image. The regexp will filter using the image prefix Packer created the image with:
 
         $ gcloud compute images list --regexp ^scalable-resilient-web-app-gold-[0-9]+$ --uri
-        https://www.googleapis.com/compute/v1/projects/peppy-hexagon-87420/global/images/scalable-resilient-web-app-gold-1426798439
 
 1. Modify the `dm/deployment.yaml` to "fast boot" (simply changing the `mode` attribute from 'default' to 'fast') and use the image URI you retrieved in the previous step:
         
