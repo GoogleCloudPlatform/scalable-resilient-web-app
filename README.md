@@ -20,7 +20,7 @@ Before you deploy the sample you'll need to make sure a few things are in order:
 
 1. In the [APIs & Auth section of the Google Developers Console](https://console.developers.google.com/project/_/apiui/api) create a new project and enable the following APIs:
 
-    * Compute Engine API
+    * Google Compute Engine
     * Google Cloud SQL API
     * Google Cloud Logging API
     * Google Compute Engine Instance Group Manager API. 
@@ -96,7 +96,7 @@ With `gcloud` installed and the proper APIs configured, you're ready to go.
 1. Deploy the solution:
 
         $ gcloud preview dm-v2 deployments \
-            create $DEMO_PROJECT \ 
+            create $DEMO_PROJECT \
             --config dm/deployment.yaml
 
 1. Wait until the deployment status is done:
