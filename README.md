@@ -112,13 +112,11 @@ With `gcloud` installed and the proper APIs configured, you're ready to go.
 
     > The process should take about 15 minutes to complete. **What's happening during that time?** Chef is downloading, compiling, and installing Ruby, along with the Redmine application and all of its Gem dependencies on each of the web server instances. In short, each instance is being fully bootstrapped. You can speed the boot time up considerably by creating a custom GCE image and pre-installing the components that take the most time. Check out the [Fast Boot with Packer](#fast) section for instructions on this approach.
     
-    > Additionally, a special leader instance will apply the database schema, and create SSL keys for the database connection (storing them in Google Cloud Storage for the web servers to download and use for their connections). While you wait, locate the special leader instance in the Developers console and SSH to it:
+    > Additionally, a special leader instance will apply the database schema, and create SSL keys for the database connection (storing them in Google Cloud Storage for the web servers to download and use for their connections).
+    
+1. All instances stream their logs to [Google Cloud Logging](https://cloud.google.com/logging/docs). While you wait, navigate to the Logs section, choose `syslog`, click the play icon, then click Expand All to stream them to your browser:
 
-    > ![](doc/leader-ssh.png)
-
-    > From the leader instance's console, tail the log:
-
-    >         $ tail -f /var/log/startupscript.log
+    > ![](doc/log.png)
 
     > When the process is complete, you'll see a line indicating the startup script finished running:
 
@@ -147,7 +145,7 @@ To delete your sample deployment:
         $ gcloud preview dm-v2 deployments delete $DEMO_PROJECT
 
 <a name="fast"></a>
-## Fast Booth with Packer
+## Fast Boot with Packer
 The majority of the ~15 minute boot time is consumed by Chef downloading, compiling, and installing Ruby and some other dependencies. And this happens every time an instance boots. You can dramatically improve boot times by building a custom GCE image once, then deploying from that image. In this section we'll use [Packer](http://www.packer.io) to build a custom image using our existing Chef recipes, then modify the Deployment Manager templates to use that image.
 
 1. Download and install Packer from [https://packer.io/downloads.html](https://packer.io/downloads.html)

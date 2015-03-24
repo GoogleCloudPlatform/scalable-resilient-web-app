@@ -53,6 +53,7 @@ resources:
       - email: "default"
         scopes: 
         - "https://www.googleapis.com/auth/devstorage.read_only"
+        - "https://www.googleapis.com/auth/logging.write"
       tags:
         items:
         - {{ WEB_SERVER_TAG }}
@@ -137,6 +138,7 @@ resources:
       - "https://www.googleapis.com/auth/devstorage.full_control"
       - "https://www.googleapis.com/auth/sqlservice.admin"
       - "https://www.googleapis.com/auth/compute"
+      - "https://www.googleapis.com/auth/logging.write"
     tags:
       items:
       - {{ WEB_SERVER_TAG }}
