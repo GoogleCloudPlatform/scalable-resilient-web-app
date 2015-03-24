@@ -45,4 +45,5 @@ bash "gems" do
   cwd "/var/www/#{node['app']}/current"
   environment ({'HOME' => "/home/#{node['user']['name']}"})
   code "~/.rbenv/bin/rbenv exec bundle install --without development test"
+  not_if { node['gce']['instance']['attributes']['gcs-access-key'] == "disabled" }
 end

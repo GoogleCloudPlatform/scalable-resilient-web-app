@@ -33,8 +33,8 @@ default['redmine']['download_to'] =  "#{default['redmine']['tmp_dir']}/#{default
 default['redmine']['url'] = "http://www.redmine.org/releases/#{default['redmine']['file_name']}"
 
 # Redmine S3 plugin
-default['redmine_s3_plugin']['url'] = "https://github.com/ka8725/redmine_s3/archive/v2.6.tar.gz"
-default['redmine_s3_plugin']['file_name'] = "v2.6.tar.gz"
+default['redmine_s3_plugin']['url'] = "https://github.com/ka8725/redmine_s3/archive/af4ef4faa2247e31a5b859ef99b2674f3f7e4846.tar.gz"
+default['redmine_s3_plugin']['file_name'] = "af4ef4faa2247e31a5b859ef99b2674f3f7e4846.tar.gz"
 default['gce']['instance']['attributes']['gcs-access-key'] = ""
 default['gce']['instance']['attributes']['gcs-secret'] = ""
 
