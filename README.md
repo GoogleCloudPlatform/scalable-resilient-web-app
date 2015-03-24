@@ -126,6 +126,10 @@ With `gcloud` installed and the proper APIs configured, you're ready to go.
 
     ![](doc/health-ip.png)
 
+1. You can sign into Redmine using the application's default credentials (username=admin, password=admin, described in more detail on the official [Redmine installation page](http://www.redmine.org/projects/redmine/wiki/RedmineInstall)):
+
+    ![](doc/redmine.png)
+
 <a name="delete"></a>
 ## Delete the Sample
 It is very important that you follow these instructions if you deployed a sample. If you do not delete the deployment you will continue to be charged for it.
