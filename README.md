@@ -25,7 +25,7 @@ Before you deploy the sample you'll need to make sure a few things are in order:
     * Google Cloud Logging API
     * Google Compute Engine Instance Group Manager API. 
 
-1. Install the Cloud SDK using [these instructions](https://cloud-dot-devsite.googleplex.com/sdk/).
+1. Install the Cloud SDK using [these instructions](https://cloud.google.com/sdk/).
 
 1. Authenticate to gcloud:
 
