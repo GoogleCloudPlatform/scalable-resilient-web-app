@@ -1,7 +1,7 @@
 {
   "variables": {
     "git_sha": "GIT_SHA",
-    "git_branch": "GIT_BRANCH"
+    "git_branch": "GIT_BRANCH",
     "account_file": "",
     "project_id": "null"
   },
