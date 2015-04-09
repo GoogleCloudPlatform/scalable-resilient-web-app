@@ -16,7 +16,7 @@
     {
       "type": "docker",
       "image": "ubuntu:14.10",
-      "export_path": "image-{{timestamp}}.tar"
+      "commit": "true" 
     }
   ],
   "provisioners": [
@@ -31,5 +31,17 @@
         "recipe[rails-sample::app]"
       ]
     }
-  ]
+  ],
+  {
+    "post-processors": [
+          [
+              {
+                  "type": "docker-tag",
+                  "repository": "gcr.io/{{user `project_id`}}/redmine",
+                  "tag": "{{user `git_sha`}}"
+              },
+              "docker-push"
+          ]
+      ]
+  }
 }
