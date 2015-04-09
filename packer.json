@@ -39,10 +39,6 @@
                 "repository": "gcr.io/{{user `project_id`}}/redmine",
                 "tag": "{{user `git_sha`}}",
                 "only": ["docker"]
-            },
-            {
-                "type": "docker-push",
-                "only": ["docker"]
             }
         ]
     ]
