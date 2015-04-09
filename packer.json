@@ -32,16 +32,14 @@
       ]
     }
   ],
-  {
-    "post-processors": [
-          [
-              {
-                  "type": "docker-tag",
-                  "repository": "gcr.io/{{user `project_id`}}/redmine",
-                  "tag": "{{user `git_sha`}}"
-              },
-              "docker-push"
-          ]
-      ]
-  }
+  "post-processors": [
+        [
+            {
+                "type": "docker-tag",
+                "repository": "gcr.io/{{user `project_id`}}/redmine",
+                "tag": "{{user `git_sha`}}"
+            },
+            "docker-push"
+        ]
+    ]
 }
