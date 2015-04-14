@@ -1,6 +1,7 @@
 {
   "variables": {
-    "git_sha": "GIT_SHA",
+    "git_commit": "",
+    "git_branch": "",
     "account_file": "",
     "project_id": "null"
   },
@@ -11,7 +12,7 @@
       "project_id": "{{user `project_id`}}",
       "source_image": "ubuntu-1410-utopic-v20150202",
       "zone": "us-central1-a",
-      "image_name": "redmine-{{timestamp}}-{{user `git_sha`}}"
+      "image_name": "redmine-{{timestamp}}-{{user `git_branch`}}-{{user `git_commit`}}"
     },
     {
       "type": "docker",
@@ -37,7 +38,7 @@
             {
                 "type": "docker-tag",
                 "repository": "gcr.io/{{user `project_id`}}/redmine",
-                "tag": "{{user `git_sha`}}",
+                "tag": "{{user `git_branch`}}-{{user `git_commit`}}",
                 "only": ["docker"]
             }
         ]
