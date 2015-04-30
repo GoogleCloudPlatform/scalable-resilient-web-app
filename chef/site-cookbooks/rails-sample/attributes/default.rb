@@ -50,8 +50,4 @@ default['gce']['instance']['attributes']['dbinstance'] = ""
 default['gce']['instance']['attributes']['dbname'] = ""
 default['gce']['instance']['attributes']['dbuser'] = ""
 default['gce']['instance']['attributes']['dbhost'] = ""
-<<<<<<< HEAD
 default['gce']['instance']['attributes']['dbpassword'] = ""
-=======
-default['gce']['instance']['attributes']['dbpassword'] = ""
->>>>>>> a59e24ac93ff7e7202b00a26b81a8148bdfaa971
