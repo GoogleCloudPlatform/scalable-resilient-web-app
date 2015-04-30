@@ -53,10 +53,7 @@ resources:
       - email: "default"
         scopes: 
         - "https://www.googleapis.com/auth/devstorage.read_only"
-<<<<<<< HEAD
         - "https://www.googleapis.com/auth/logging.write"
-=======
->>>>>>> a59e24ac93ff7e7202b00a26b81a8148bdfaa971
       tags:
         items:
         - {{ WEB_SERVER_TAG }}
@@ -66,12 +63,9 @@ resources:
           value: |
             #! /bin/bash
 
-<<<<<<< HEAD
             # Install Google Cloud Logging
             curl -s "https://storage.googleapis.com/signals-agents/logging/google-fluentd-install.sh" | bash
 
-=======
->>>>>>> a59e24ac93ff7e7202b00a26b81a8148bdfaa971
             # Install Chef
             curl -L https://www.opscode.com/chef/install.sh | bash
 
@@ -144,10 +138,7 @@ resources:
       - "https://www.googleapis.com/auth/devstorage.full_control"
       - "https://www.googleapis.com/auth/sqlservice.admin"
       - "https://www.googleapis.com/auth/compute"
-<<<<<<< HEAD
       - "https://www.googleapis.com/auth/logging.write"
-=======
->>>>>>> a59e24ac93ff7e7202b00a26b81a8148bdfaa971
     tags:
       items:
       - {{ WEB_SERVER_TAG }}
@@ -157,12 +148,9 @@ resources:
         value: |
           #! /bin/bash
 
-<<<<<<< HEAD
           # Install Google Cloud Logging
           curl -s "https://storage.googleapis.com/signals-agents/logging/google-fluentd-install.sh" | bash
 
-=======
->>>>>>> a59e24ac93ff7e7202b00a26b81a8148bdfaa971
           # Install Chef
           curl -L https://www.opscode.com/chef/install.sh | bash
 

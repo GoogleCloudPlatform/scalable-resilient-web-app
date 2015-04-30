@@ -12,17 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-<<<<<<< HEAD
 # Define resource names for the sub-deployment, bucket, LB and instance group
-=======
->>>>>>> a59e24ac93ff7e7202b00a26b81a8148bdfaa971
 {% set WEB = env["deployment"] + "-" + env["name"] %}
 {% set STORAGE = env["deployment"] + "-" + env["project"] %}
 {% set LB = WEB %}
 {% set INSTANCE_GROUP = LB + "-instancegroup" %}
 
 # Database connection info
-<<<<<<< HEAD
 {% set DB_INSTANCE = properties["database"]["name"] %}
 {% set DB_HOST = properties["database"]["address"] %}
 {% set DB_PASSWORD = properties["database"]["password"] %}
@@ -30,34 +26,19 @@
 # VM Image and Chef runlist/cookbook to use
 {% set IMAGE_MODE = properties["image"]["mode"] %}
 
-=======
-{% set DB_INSTANCE = properties["database"]["instance_name"] %}
-{% set DB_HOST = properties["database"]["host"] %}
-{% set DB_PASSWORD = properties["database"]["password"] %}
-
->>>>>>> a59e24ac93ff7e7202b00a26b81a8148bdfaa971
 resources:
 - name: {{ WEB }}
   type: web-servers.jinja
   properties:
     zones: {{ properties["zones"] }}
-<<<<<<< HEAD
-=======
-    image: {{ properties["image"] }}
->>>>>>> a59e24ac93ff7e7202b00a26b81a8148bdfaa971
     desired_web_servers: {{ properties["desired_web_servers"] }}
     max_web_servers: {{ properties["max_web_servers"] }}
     min_web_servers: {{ properties["min_web_servers"] }}
     instance_group: {{ INSTANCE_GROUP }}
     machine_type: {{ properties["machine_type"] }}
-<<<<<<< HEAD
     image: {{ properties["image"][IMAGE_MODE]["image"] }}
     chef_node_url: {{ properties["image"][IMAGE_MODE]["chef_node_url"] }}
     chef_cookbook_url: {{ properties["image"][IMAGE_MODE]["chef_cookbook_url"] }}
-=======
-    chef_node_url: {{ properties["chef_node_url"] }}
-    chef_cookbook_url: {{ properties["chef_cookbook_url"] }}
->>>>>>> a59e24ac93ff7e7202b00a26b81a8148bdfaa971
     storage_bucket : {{ STORAGE }}
     dbinstance: {{ DB_INSTANCE }}
     dbhost: {{ DB_HOST }}
