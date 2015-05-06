@@ -22,8 +22,7 @@ Before you deploy the sample you'll need to make sure a few things are in order:
 
     * Google Compute Engine
     * Google Cloud SQL API
-    * Google Cloud Logging API
-    * Google Compute Engine Instance Group Manager API. 
+    * Google Cloud Deployment Manager V2 API
 
 1. Install the Cloud SDK using [these instructions](https://cloud.google.com/sdk/).
 
@@ -35,9 +34,9 @@ Before you deploy the sample you'll need to make sure a few things are in order:
 
         $ gcloud config set project YOUR_PROJECT_ID
 
-1. Enable preview features:
+1. Enable beta features:
 
-        $ gcloud components update preview
+        $ gcloud components update beta 
 
 <a name="deploy"></a>
 ## Deploy the Sample
@@ -95,7 +94,7 @@ With `gcloud` installed and the proper APIs configured, you're ready to go.
 
 1. Deploy the solution:
 
-        $ gcloud preview dm-v2 deployments \
+        $ gcloud beta deployment-manager deployments \
             create $DEMO_PROJECT \
             --config dm/deployment.yaml
 
@@ -138,7 +137,7 @@ To delete your sample deployment:
 
 1. Delete all objects in the bucket created by your sample deployment:
 
-        $ gsutil rm -r gs://$(gcloud preview dm-v2 resources list --deployment $DEMO_PROJECT | grep storage.v1.bucket | cut -d' ' -f1)/*
+        $ gsutil rm -r gs://$(gcloud beta deployment-manager resources list --deployment $DEMO_PROJECT | grep storage.v1.bucket | cut -d' ' -f1)/*
 
 1. Delete your SQL database:
 
@@ -146,7 +145,7 @@ To delete your sample deployment:
 
 1. Finally, delete your deployment:
 
-        $ gcloud preview dm-v2 deployments delete $DEMO_PROJECT
+        $ gcloud beta deployment-manager deployments delete $DEMO_PROJECT
 
 <a name="fast"></a>
 ## Fast Boot with Packer

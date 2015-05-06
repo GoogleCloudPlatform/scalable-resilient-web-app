@@ -12,14 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-imports: ["scalable-web-app.jinja", "web-servers.jinja", "storage-bucket.jinja", "http-load-balancer.jinja"]
+imports: 
+  - path: scalable-web-app.jinja
+  - path: web-servers.jinja
+  - path: storage-bucket.jinja 
+  - path: http-load-balancer.jinja
 
 resources:
 - name: scalable-web-app
   type: scalable-web-app.jinja
   properties:
     database:
-      name: #Replace with your database's instance name    
+      name: #Replace with your database's instance name
       address:  #Replace with your database's host address
       password: YOUR_PASSWORD #Replace with your own strong password
     gcs_access_key: disabled

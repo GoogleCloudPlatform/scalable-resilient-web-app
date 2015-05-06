@@ -15,7 +15,7 @@
 # Define resource names for the sub-deployment, bucket, LB and instance group
 {% set WEB = env["deployment"] + "-" + env["name"] %}
 {% set STORAGE = env["deployment"] + "-" + env["project"] %}
-{% set LB = WEB %}
+{% set LB = WEB + "-lb" %}
 {% set INSTANCE_GROUP = LB + "-instancegroup" %}
 
 # Database connection info
