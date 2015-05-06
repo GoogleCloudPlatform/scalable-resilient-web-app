@@ -1,16 +1,16 @@
 {
-	"run_list": [
-	  "recipe[rails-sample]",
-	  "recipe[rails-sample::user]",
-	  "recipe[rails-sample::leader_init]",
-	  "recipe[rails-sample::ruby]",
-	  "recipe[rails-sample::app]",
-      "recipe[rails-sample::redmine_s3]",
-	  "recipe[rails-sample::database]",
-      "recipe[rails-sample::leader_dbinit]",
-	  "recipe[rails-sample::leader_delete]",
-	  "recipe[rails-sample::follower_wait]",
-      "recipe[rails-sample::nginx]",
-	  "recipe[rails-sample::unicorn]"
-	]
+  "run_list": [
+    "recipe[rails-sample]",
+    "recipe[rails-sample::user]",
+    "recipe[rails-sample::leader_init]",
+    "recipe[rails-sample::ruby]",
+    "recipe[rails-sample::app]",
+    "recipe[rails-sample::redmine_s3]",
+    "recipe[rails-sample::database]",
+    "recipe[rails-sample::leader_dbinit]",
+    "recipe[rails-sample::leader_delete]",
+    "recipe[rails-sample::follower_wait]",
+    "recipe[rails-sample::nginx]",
+    "recipe[rails-sample::unicorn]"
+  ]
 }

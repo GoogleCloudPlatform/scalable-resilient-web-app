@@ -24,6 +24,7 @@ bash "init_ssl" do
   user node['user']['name']
   environment ({'HOME' => "/home/#{node['user']['name']}"})
   code <<-EOH
+    set -e
     key=redmine-$(date +%s)
     # generate private key, save locally, and restart db
     gcloud sql ssl-certs create $key #{sslkey_local} --instance #{node['gce']['instance']['attributes']['dbinstance']}
