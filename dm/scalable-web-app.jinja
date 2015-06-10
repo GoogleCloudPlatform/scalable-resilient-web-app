@@ -19,7 +19,7 @@
 {% set INSTANCE_GROUP = LB + "-instancegroup" %}
 
 # Database connection info
-{% set DB_INSTANCE = properties["database"]["name"] %}
+{% set DB_INSTANCE = properties["database"]["dbname"] %}
 {% set DB_HOST = properties["database"]["address"] %}
 {% set DB_PASSWORD = properties["database"]["password"] %}
 
