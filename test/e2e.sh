@@ -55,3 +55,8 @@ gsutil rm -r gs://$(gcloud beta deployment-manager resources list --deployment $
 gcloud sql instances delete $DB_NAME --quiet
 gcloud beta deployment-manager deployments delete ${DEMO_PROJECT} --quiet
 
+if [ "${MINUTES}" = "0" ]
+then
+  echo "The application did not successfully respond, but the database and deployment were deleted."
+  return 1
+fi
