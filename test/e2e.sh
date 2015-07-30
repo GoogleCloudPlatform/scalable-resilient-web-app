@@ -29,12 +29,12 @@ sed -i.bak "s/password:.*$/password: ${DB_PW}/g" dm/deployment.yaml
 rm dm/*.bak
 
 # Create the deployment
-gcloud beta deployment-manager deployments \
+gcloud deployment-manager deployments \
     create ${DEMO_PROJECT} \
     --config dm/deployment.yaml
 
 # Get the forwarding rule ID, then its address
-FORWARDING_RULE=$(gcloud beta deployment-manager deployments describe ${DEMO_PROJECT} | grep compute.v1.globalForwardingRule | cut -d' ' -f 1)
+FORWARDING_RULE=$(gcloud deployment-manager deployments describe ${DEMO_PROJECT} | grep compute.v1.globalForwardingRule | cut -d' ' -f 1)
 APP_URL=http://$(gcloud compute forwarding-rules describe ${FORWARDING_RULE} --global | grep IPAddress | cut -f2 -d' ')
 
 echo "Trying to access app at $APP_URL"
@@ -51,9 +51,9 @@ do
     sleep 60
 done
 
-gsutil rm -r gs://$(gcloud beta deployment-manager resources list --deployment $DEMO_PROJECT | grep storage.v1.bucket | cut -d' ' -f1)/*
+gsutil rm -r gs://$(gcloud deployment-manager resources list --deployment $DEMO_PROJECT | grep storage.v1.bucket | cut -d' ' -f1)/*
 gcloud sql instances delete $DB_NAME --quiet
-gcloud beta deployment-manager deployments delete ${DEMO_PROJECT} --quiet
+gcloud deployment-manager deployments delete ${DEMO_PROJECT} --quiet
 
 if [ "${MINUTES}" = "0" ]
 then
