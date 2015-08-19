@@ -20,4 +20,8 @@ MAINTAINER Evan Brown <evanbrown@google.com>
 
 RUN apt-get install -y curl
 RUN gcloud components update beta --quiet
-COPY . /app
+COPY . /tmp/scalable-resilient-web-app-solution
+RUN cp /tmp/scalable-resilient-web-app-solution/test/e2e.sh /tmp/scalable-resilient-web-app-solution/e2e.sh
+WORKDIR /tmp/scalable-resilient-web-app-solution
+
+ENTRYPOINT ["./e2e.sh"]
