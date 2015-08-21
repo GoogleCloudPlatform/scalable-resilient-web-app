@@ -1,6 +1,6 @@
 node('docker') {
-  git url: 'https://github.com/GoogleCloudPlatform/scalable-resilient-web-app.git'
-  def app = docker.build 'scalable-resilient-web-app'
+  def hash = git url: "${GIT_URL}"
+  def app = docker.build("${hash}, "test")
   app.withRun {c ->
     sh "docker logs -f ${c.id}"
   }
