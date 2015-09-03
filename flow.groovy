@@ -4,4 +4,7 @@ node('docker') {
   app.withRun {c ->
     sh "docker logs -f ${c.id}"
   }
+  catchError {
+    mail subject: 'Build Broken', to: '${OWNER_EMAIL}', body: '${currentBuild.result}'
+  }
 }
