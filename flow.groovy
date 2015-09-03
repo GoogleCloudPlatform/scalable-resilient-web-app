@@ -6,5 +6,6 @@ node('docker') {
   }
   catchError {
     mail subject: 'Build Broken', to: '${OWNER_EMAIL}', body: '${currentBuild.result}'
+    error 'An error occurred in the build'
   }
 }
