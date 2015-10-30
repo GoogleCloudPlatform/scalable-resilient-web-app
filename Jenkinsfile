@@ -1,5 +1,5 @@
 node('docker') {
-  def hash = git url: "${GIT_URL}"
+  checkout scm
   docker.image('buildpack-deps:jessie-scm').inside {
     sh('exit 1')
   }
