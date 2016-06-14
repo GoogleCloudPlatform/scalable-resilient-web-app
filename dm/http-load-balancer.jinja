@@ -45,7 +45,7 @@ resources:
     timeoutSec: 30
     backends: 
       {% for zone in properties["zones"] %}
-      - group: $(ref.{{ INSTANCE_GROUP + "-" + zone }}.group)
+      - group: $(ref.{{ INSTANCE_GROUP + "-" + zone }}.instanceGroup)
         balancingMode: RATE
         maxRatePerInstance: 100
       {% endfor %}

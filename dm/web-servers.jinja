@@ -94,16 +94,16 @@ resources:
 {% for zone in properties["zones"] %}
 # Instance Group Manager for web servers
 - name: {{ INSTANCE_GROUP + "-" + zone }}
-  type: replicapool.v1beta2.instanceGroupManager
+  type: compute.v1.instanceGroupManager
   properties:
     zone: {{ zone }}
-    size: {{ properties["zones"][zone]["desired_web_servers"] }}
+    targetSize: {{ properties["zones"][zone]["desired_web_servers"] }}
     baseInstanceName: {{ env["name"] }}
     instanceTemplate: $(ref.{{ INSTANCE_TEMPLATE }}.selfLink)
 
 # Autoscaler
 - name: {{ AUTOSCALER + "-" + zone}}
-  type: autoscaler.v1beta2.autoscaler
+  type: compute.v1.autoscaler
   properties:
     zone: {{ zone }}
     target: $(ref.{{ INSTANCE_GROUP + "-" + zone }}.selfLink)

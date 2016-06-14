@@ -34,10 +34,6 @@ Before you deploy the sample you'll need to make sure a few things are in order:
 
         $ gcloud config set project YOUR_PROJECT_ID
 
-1. Enable beta features:
-
-        $ gcloud components update beta 
-
 <a name="deploy"></a>
 ## Deploy the Sample
 With `gcloud` installed and the proper APIs configured, you're ready to go.
@@ -67,7 +63,7 @@ With `gcloud` installed and the proper APIs configured, you're ready to go.
 1. Set the root password for your database:
 
         $ gcloud sql instances set-root-password $DB_NAME \
-          --password YOUR_PASSWORD
+            --password YOUR_PASSWORD
 
 1. Retrieve the Instance Name and IP address of your database: 
 
@@ -94,7 +90,7 @@ With `gcloud` installed and the proper APIs configured, you're ready to go.
 
 1. Deploy the solution:
 
-        $ gcloud beta deployment-manager deployments \
+        $ gcloud deployment-manager deployments \
             create $DEMO_PROJECT \
             --config dm/deployment.yaml
 
@@ -137,7 +133,7 @@ To delete your sample deployment:
 
 1. Delete all objects in the bucket created by your sample deployment:
 
-        $ gsutil rm -r gs://$(gcloud beta deployment-manager resources list --deployment $DEMO_PROJECT | grep storage.v1.bucket | cut -d' ' -f1)/*
+        $ gsutil rm -r gs://$(gcloud deployment-manager resources list --deployment $DEMO_PROJECT | grep storage.v1.bucket | cut -d' ' -f1)/*
 
 1. Delete your SQL database:
 
@@ -145,7 +141,7 @@ To delete your sample deployment:
 
 1. Finally, delete your deployment:
 
-        $ gcloud beta deployment-manager deployments delete $DEMO_PROJECT
+        $ gcloud deployment-manager deployments delete $DEMO_PROJECT
 
 <a name="fast"></a>
 ## Fast Boot with Packer
