@@ -67,7 +67,7 @@ resources:
             curl -s "https://storage.googleapis.com/signals-agents/logging/google-fluentd-install.sh" | bash
 
             # Install Chef
-            curl -L https://www.opscode.com/chef/install.sh | bash
+            curl -LO https://omnitruck.chef.io/install.sh && sudo bash ./install.sh -v 11.18.12 && rm install.sh
 
             # Download runlist and cookbooks
             curl -L {{ properties["chef_node_url"] }} > /tmp/node.json
