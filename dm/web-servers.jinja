@@ -49,9 +49,9 @@ resources:
         accessConfigs:
         - name: External NAT
           type: ONE_TO_ONE_NAT
-      serviceAccounts: 
+      serviceAccounts:
       - email: "default"
-        scopes: 
+        scopes:
         - "https://www.googleapis.com/auth/devstorage.read_only"
         - "https://www.googleapis.com/auth/logging.write"
       tags:
@@ -72,8 +72,11 @@ resources:
             # Download runlist and cookbooks
             curl -L {{ properties["chef_node_url"] }} > /tmp/node.json
 
+            # Define cookbooks path
+            echo "cookbooks_path '/var/chef/site-cookbooks'" > /tmp/solo.rb
+
             # Configure instance
-            chef-solo -l debug -j /tmp/node.json -r {{ properties["chef_cookbook_url"] }}
+            chef-solo  -c /tmp/solo.rb -l debug -j /tmp/node.json -r {{ properties["chef_cookbook_url"] }}
         - key: storage-bucket
           value: {{ properties["storage_bucket"] }}
         - key: dbinstance
@@ -81,15 +84,15 @@ resources:
         - key: dbname
           value: {{ properties["dbname"] }}
         - key: dbuser
-          value: {{ properties["dbuser"] }}   
+          value: {{ properties["dbuser"] }}
         - key: dbpassword
-          value: {{ properties["dbpassword"] }}          
+          value: {{ properties["dbpassword"] }}
         - key: dbhost
           value: {{ properties["dbhost"] }}
         - key: gcs-access-key
           value: {{ properties["gcs_access_key"] }}
         - key: gcs-secret
-          value: {{ properties["gcs_secret"] }}          
+          value: {{ properties["gcs_secret"] }}
 
 {% for zone in properties["zones"] %}
 # Instance Group Manager for web servers
@@ -132,9 +135,9 @@ resources:
       accessConfigs:
       - name: External NAT
         type: ONE_TO_ONE_NAT
-    serviceAccounts: 
+    serviceAccounts:
     - email: "default"
-      scopes: 
+      scopes:
       - "https://www.googleapis.com/auth/devstorage.full_control"
       - "https://www.googleapis.com/auth/sqlservice.admin"
       - "https://www.googleapis.com/auth/compute"
@@ -152,13 +155,16 @@ resources:
           curl -s "https://storage.googleapis.com/signals-agents/logging/google-fluentd-install.sh" | bash
 
           # Install Chef
-          curl -L https://www.opscode.com/chef/install.sh | bash
+          curl -LO https://omnitruck.chef.io/install.sh && sudo bash ./install.sh -v 11.18.12 && rm install.sh
 
           # Download runlist and cookbooks
           curl -L {{ properties["chef_node_url"] }} > /tmp/node.json
 
+          # Define cookbooks path
+          echo "cookbooks_path '/var/chef/site-cookbooks'" > /tmp/solo.rb
+
           # Configure instance
-          chef-solo -l debug -j /tmp/node.json -r {{ properties["chef_cookbook_url"] }}
+          chef-solo -c /tmp/solo.rb -l debug -j /tmp/node.json -r {{ properties["chef_cookbook_url"] }}
       - key: storage-bucket
         value: {{ properties["storage_bucket"] }}
       - key: leader
@@ -168,12 +174,12 @@ resources:
       - key: dbname
         value: {{ properties["dbname"] }}
       - key: dbuser
-        value: {{ properties["dbuser"] }}          
+        value: {{ properties["dbuser"] }}
       - key: dbpassword
-        value: {{ properties["dbpassword"] }}          
+        value: {{ properties["dbpassword"] }}
       - key: dbhost
         value: {{ properties["dbhost"] }}
       - key: gcs-access-key
         value: {{ properties["gcs_access_key"] }}
       - key: gcs-secret
-        value: {{ properties["gcs_secret"] }}   
+        value: {{ properties["gcs_secret"] }}
