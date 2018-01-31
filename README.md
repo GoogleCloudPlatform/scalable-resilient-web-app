@@ -18,7 +18,7 @@ To reduce costs, you can modify the Deployment Manager templates to provision sm
 ## Deployment Requirements
 Before you deploy the sample you'll need to make sure a few things are in order:
 
-1. In the [APIs & Auth section of the Google Developers Console](https://console.developers.google.com/project/_/apiui/api) create a new project and enable the following APIs:
+1. In the [APIs & Auth section of the Google Cloud Console](https://console.developers.google.com/project/_/apiui/api) create a new project and enable the following APIs:
 
     * Google Compute Engine
     * Google Cloud SQL API
@@ -99,7 +99,7 @@ With `gcloud` installed and the proper APIs configured, you're ready to go.
         Waiting for create operation operation-1418683534250-41771e4b-ba9c-4c09-aba3-553ccb8ec5f1 to complete...done.
         Create operation operation-1418683534250-41771e4b-ba9c-4c09-aba3-553ccb8ec5f1 completed successfully.
 
-1. In the Developers Console open **HTTP load balancing**, then find and click on your new load balancer:
+1. In the Cloud Console open **Load balancing**, then find and click on your new load balancer:
 
     ![](doc/view-lb.png)
 
@@ -179,7 +179,7 @@ The majority of the ~15 minute boot time is consumed by Chef downloading, compil
 
 1. When you're done, follow steps in [**Delete the Sample**](#delete) to delete your deployment.
 
-1. Finally, delete the custom image you created with Packer from the Images section of the Developers Console:
+1. Finally, delete the custom image you created with Packer from the Images section of the Cloud Console:
 
     ![](doc/delete-image.png)
 
