@@ -26,7 +26,9 @@ bash 'install rbenv' do
   cwd "/home/#{node['user']['name']}"
   code <<-EOH
     export HOME=/home/#{node['user']['name']}
-    curl -L https://raw.github.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
+    export RBENV_ROOT="${HOME}/.rbenv"
+    export PATH="${RBENV_ROOT}/bin:${RBENV_ROOT}/shims:${PATH}"
+    curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-installer | bash
   EOH
   not_if { File.exists?("/home/#{node['user']['name']}/.rbenv/bin/rbenv") }
 end

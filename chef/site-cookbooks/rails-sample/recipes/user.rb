@@ -20,7 +20,7 @@ user node['user']['name'] do
   gid node['group']
   home "/home/#{node['user']['name']}"
   shell "/bin/bash"
-  supports manage_home: true # need for /home creation
+  manage_home true # need for /home creation
 end
 
 # give group sudo privileges
