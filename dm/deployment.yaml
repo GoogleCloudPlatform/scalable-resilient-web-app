@@ -46,8 +46,8 @@ resources:
       default:
         image: https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/images/ubuntu-1404-trusty-v20151113
         chef_node_url: https://storage.googleapis.com/solutions-public-assets/scalable-resilient-web-apps/dist/node.json
-        chef_cookbook_url: https://storage.googleapis.com/solutions-public-assets/scalable-resilient-web-apps/dist/chef-solo.tar.gz
+        chef_cookbook_url: https://storage.googleapis.com/solutions-public-assets/scalable-resilient-web-apps/dist/chef-solo-v3.tar.gz
       fast:
         image: none 
         chef_node_url: https://storage.googleapis.com/solutions-public-assets/scalable-resilient-web-apps/dist/node_fast.json
-        chef_cookbook_url: https://storage.googleapis.com/solutions-public-assets/scalable-resilient-web-apps/dist/chef-solo.tar.gz
+        chef_cookbook_url: https://storage.googleapis.com/solutions-public-assets/scalable-resilient-web-apps/dist/chef-solo-v3.tar.gz
