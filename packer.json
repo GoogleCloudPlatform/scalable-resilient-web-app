@@ -12,6 +12,7 @@
       "project_id": "{{user `project_id`}}",
       "source_image": "ubuntu-1404-trusty-v20151113",
       "zone": "us-central1-a",
+      "ssh_username": "root",
       "image_name": "redmine-{{timestamp}}-{{user `git_branch`}}-{{user `git_commit`}}"
     }
   ],
